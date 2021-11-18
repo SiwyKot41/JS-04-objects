@@ -1,4 +1,3 @@
-
 const one_kWh_price = 20;
 const currentYear = new Date().getFullYear();
 
@@ -58,5 +57,27 @@ class ListOfGoods {
     }
 }
 
+class Shop extends ListOfGoods {
+    static id = 0;
+    constructor() {
+        super();
+    }
+
+    addProduct(name, model, yearOfProduction, price, consumptionOfEnergy_kWh) {
+        this.id = Shop.id++
+        let product = new Product(this.id, model, yearOfProduction, price, consumptionOfEnergy_kWh);
+        if (this.map[product.id] !== undefined) throw "The product with the given id is already on the list"
+        else this.map[product.id] = product;
+    }
 
 
+    addProduct(id, name, model, yearOfProduction, price, consumptionOfEnergy_kWh) {
+        let product = new Product(id, model, yearOfProduction, price, consumptionOfEnergy_kWh);
+        if (this.map[product.id] !== undefined) throw "The product with the given id is already on the list"
+        else this.map[product.id] = product;
+    }
+}
+
+class Warehouse extends ListOfGoods {
+
+}
